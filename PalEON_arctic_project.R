@@ -38,7 +38,7 @@ shrub_data <- rasterToPoints(imported_image_cr, spatial=TRUE)
 
 # reproject sp object to lat-lon
 shrub_data <- spTransform(shrub_data, CRS("+init=epsg:4326"))
-proj4string(shrub_data)
+
 
 # Assign coordinates to @data slot, display first 6 rows of data.frame
 shrub_data@data <- data.frame(shrub_data@data, long=coordinates(shrub_data)[,1],
