@@ -1,6 +1,6 @@
 library(neotoma)
 
-#-------------this is a test-hggg-------- download data ----------------------#
+#------------------- download data ----------------------#
 
 # get arctic sites pollen datasets
 # surface sample
