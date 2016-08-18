@@ -48,11 +48,6 @@ head(shrub_data@data)
 
 #---------------------- reformat surface pollen data ----------------------#
 
-names(arctic_suface_pollen_data[[1]])
-head(arctic_suface_pollen_data[[1]]$taxon.list)
-head(arctic_suface_pollen_data[[1]]$counts)
-head(arctic_pollen_data[[1]]$dataset$site.data)
-
 
 surface_pollen_taxons <- pollen_taxons <- list()
 surface_pollen_counts <- pollen_counts <- list()
