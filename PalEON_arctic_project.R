@@ -50,7 +50,10 @@ shrub_data@data <- data.frame(shrub_data@data, long=coordinates(shrub_data)[,1],
                               lat=coordinates(shrub_data)[,2])                         
 head(shrub_data@data)
 
-print("Hello Amanda")
+print("will there be any conflicts if I work here and you work there")
+x <-2
+y= 2+x
+p=y*9
 
 #---------------------- reformat surface pollen data ----------------------#
 
