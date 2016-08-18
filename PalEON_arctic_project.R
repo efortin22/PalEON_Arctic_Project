@@ -38,20 +38,16 @@ shrub_data <- rasterToPoints(imported_image_cr, spatial=TRUE)
 
 # reproject sp object to lat-lon
 shrub_data <- spTransform(shrub_data, CRS("+init=epsg:4326"))
-proj4string(shrub_data)
+
 
 # Assign coordinates to @data slot, display first 6 rows of data.frame
 shrub_data@data <- data.frame(shrub_data@data, long=coordinates(shrub_data)[,1],
                               lat=coordinates(shrub_data)[,2])                         
 head(shrub_data@data)
 
+print("Hello Amanda")
 
 #---------------------- reformat surface pollen data ----------------------#
-
-names(arctic_suface_pollen_data[[1]])
-head(arctic_suface_pollen_data[[1]]$taxon.list)
-head(arctic_suface_pollen_data[[1]]$counts)
-head(arctic_pollen_data[[1]]$dataset$site.data)
 
 
 surface_pollen_taxons <- pollen_taxons <- list()
