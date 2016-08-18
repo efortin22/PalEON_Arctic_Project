@@ -1,11 +1,6 @@
 library(neotoma)
 <<<<<<< HEAD
 
-#-------------this is a test-hggg-------- download data ----------------------#
-=======
-print("hello")
-#-------------this is a test--------- download data ----------------------#
->>>>>>> 62f092a18d6cec49807c208c052364bbd4b95381
 
 # get arctic sites pollen datasets
 # surface sample
@@ -50,10 +45,6 @@ shrub_data@data <- data.frame(shrub_data@data, long=coordinates(shrub_data)[,1],
                               lat=coordinates(shrub_data)[,2])                         
 head(shrub_data@data)
 
-print("will there be any conflicts if I work here and you work there")
-x <-2
-y= 2+x
-p=y*9
 
 ##---------------------Map of Alaska---------------------------------------#
 library(maps)
@@ -66,11 +57,6 @@ northslope.map <- map("world", c("USA:Alaska"), xlim=c(-170,-135), ylim=c(66,72)
 
 surface_pollen_taxons <- pollen_taxons <- list()
 surface_pollen_counts <- pollen_counts <- list()
-
-# lat - lon - elev - taxon.list - 
-foseq_along(arctic_suface_pollen_data)
-
-arctic_pollen_data[[1]]$dataset$site.data$lat
 
 #---------------------- reformat surface pollen data ----------------------#
 # site.name - lat -lon age Alnus Betula Ericales Populus Salix Total
@@ -89,20 +75,6 @@ head(arctic_pollen_data[[1]]$taxon.list)
 
 surface_pollen_taxons <- pollen_taxons <- list()
 surface_pollen_counts <- pollen_counts <- list()
-
-# lat - lon - elev - taxon.list - 
-foseq_along(arctic_surface_pollen_data)
-
-arctic_pollen_data[[1]]$dataset$site.data$lat
-
-
-
-#n<-c("Alnus", "Betula", "Ericales", "Populus", "Salix")
-#sites<-names(arctic_surface_pollen_data)
-#d<-NULL
-#sites<-print(arctic_surface_pollen_data$Datasets[,c(2:5)])
-#df<-data.frame(n,sites, d)
-
 
 
 # site.name - lat -lon age Alnus Betula Ericales Populus Salix Total
@@ -131,4 +103,3 @@ surface_pollen$prop<-(surface_pollen$shrub.total/surface_pollen$site.total)*100
 
 
 print("I love camp PalEON!")
-print("my change")
