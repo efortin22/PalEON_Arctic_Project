@@ -96,10 +96,10 @@ for(i in 1:length(arctic_surface_pollen_data)){
   
 }
 
-surface_pollen <- data.frame(site.id = sites.id,site.lat = site.lat, site.long = site.long, site.total = site.total, shrub.total = shrub.total)
+surface_pollen <- data.frame(site.id = sites.id, site.long = site.long, site.lat = site.lat, site.total = site.total, shrub.total = shrub.total)
 surface_pollen$prop<-(surface_pollen$shrub.total/surface_pollen$site.total)*100
 
-
-
+library(fields)
+dist.mat <- fields.rdist.near(surface_pollen[,2:3], shrub_df[,2:3], delta = 1)
 
 print("I love camp PalEON!")
