@@ -57,3 +57,56 @@ foseq_along(arctic_suface_pollen_data)
 
 arctic_pollen_data[[1]]$dataset$site.data$lat
 
+#---------------------- reformat surface pollen data ----------------------#
+# site.name - lat -lon age Alnus Betula Ericales Populus Salix Total
+
+# site.id - lat -lon age Alnus Betula Ericales Populus Salix Total
+
+
+
+names(arctic_surface_pollen_data[[1]])
+head(arctic_surface_pollen_data[[1]]$taxon.list)
+head(arctic_surface_pollen_data[[1]]$counts)
+head(arctic_pollen_data[[1]]$dataset$site.data)
+head(arctic_pollen_data[[1]]$ecological)
+
+
+surface_pollen_taxons <- pollen_taxons <- list()
+surface_pollen_counts <- pollen_counts <- list()
+
+# lat - lon - elev - taxon.list - 
+foseq_along(arctic_surface_pollen_data)
+
+arctic_pollen_data[[1]]$dataset$site.data$lat
+
+
+
+n<-c("Alnus", "Betula", "Ericales", "Populus", "Salix")
+sites<-names(arctic_surface_pollen_data)
+d<-NULL
+sites<-print(arctic_surface_pollen_data$Datasets[,c(2:5)])
+df<-data.frame(n,sites, d)
+
+
+
+# site.name - lat -lon age Alnus Betula Ericales Populus Salix Total
+
+sites.id<-names(arctic_surface_pollen_data)
+site.lat<- rep(NA, 148)
+site.long<-rep(NA, 148)
+site.total<-rep(NA,148)
+shrub.total <- rep(NA,148)
+
+shrub.taxa <- c("Alnus", "Betula", "Salix" )
+for(i in 1:length(arctic_surface_pollen_data)){
+  
+  site.lat[i]<-arctic_surface_pollen_data[[i]]$dataset$site.data$lat
+  site.long[i]<-arctic_surface_pollen_data[[i]]$dataset$site.data$long
+  site.total[i]<-sum(arctic_surface_pollen_data[[i]]$count)
+  
+  shrub.total[i] <- sum(arctic_surface_pollen_data[[i]]$count[which(colnames(arctic_surface_pollen_data[[i]]$counts) %in% shrub.taxa)])
+  
+}
+
+surface_pollen <- data.frame(site.id = sites.id,site.lat = site.lat, site.long = site.long, site.total = site.total, shrub.total = shrub.total)
+
