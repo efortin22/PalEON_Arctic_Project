@@ -55,6 +55,12 @@ x <-2
 y= 2+x
 p=y*9
 
+##---------------------Map of Alaska---------------------------------------#
+library(maps)
+Alaska.map <- map("world", c("USA:Alaska"), xlim=c(-180,-135), ylim=c(50,72),interior = FALSE)
+northslope.map <- map("world", c("USA:Alaska"), xlim=c(-170,-135), ylim=c(66,72),interior = FALSE)
+
+
 #---------------------- reformat surface pollen data ----------------------#
 
 
@@ -78,6 +84,7 @@ head(arctic_surface_pollen_data[[1]]$taxon.list)
 head(arctic_surface_pollen_data[[1]]$counts)
 head(arctic_pollen_data[[1]]$dataset$site.data)
 head(arctic_pollen_data[[1]]$ecological)
+head(arctic_pollen_data[[1]]$taxon.list)
 
 
 surface_pollen_taxons <- pollen_taxons <- list()
@@ -90,11 +97,11 @@ arctic_pollen_data[[1]]$dataset$site.data$lat
 
 
 
-n<-c("Alnus", "Betula", "Ericales", "Populus", "Salix")
-sites<-names(arctic_surface_pollen_data)
-d<-NULL
-sites<-print(arctic_surface_pollen_data$Datasets[,c(2:5)])
-df<-data.frame(n,sites, d)
+#n<-c("Alnus", "Betula", "Ericales", "Populus", "Salix")
+#sites<-names(arctic_surface_pollen_data)
+#d<-NULL
+#sites<-print(arctic_surface_pollen_data$Datasets[,c(2:5)])
+#df<-data.frame(n,sites, d)
 
 
 
@@ -118,6 +125,10 @@ for(i in 1:length(arctic_surface_pollen_data)){
 }
 
 surface_pollen <- data.frame(site.id = sites.id,site.lat = site.lat, site.long = site.long, site.total = site.total, shrub.total = shrub.total)
+surface_pollen$prop<-(surface_pollen$shrub.total/surface_pollen$site.total)*100
+
+
+
 
 print("I love camp PalEON!")
 print("my change")
