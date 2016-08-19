@@ -25,12 +25,23 @@ library(raster)
 # locate the dataset in your computer
 # setwd("../../PalEON_Arctic_Project/data")
 imported_image <- raster("AllShrubMap_masked.img")
-projection(imported_image)
+projected_raster <- projectRaster(imported_image, crs = "+init=epsg:4326")
+plot(projected_raster)
 
+# lat-lon of pollen sites
+xy <- surface_pollen[,2:3]
+
+# extract the data from raster within the 10km radius
+z <- extract(projected_raster, xy, buffer=20000)
+
+# take the mean
+prcnt <- sapply(z, mean, na.rm=TRUE) 
+  
 #crop the raster a little bit to make it more managable
-e <- extent(0, 450000, 2000000, 2300000)
+e <- extent(130000, 250000, 2000000, 2300000)
 imported_image_cr <- crop(imported_image, e)
 plot(imported_image_cr)
+
 
 # according to the internets this is how you get lon-lat-data matrix
 # Convert raster to SpatialPointsDataFrame
@@ -44,7 +55,7 @@ shrub_data <- spTransform(shrub_data, CRS("+init=epsg:4326"))
 shrub_data@data <- data.frame(shrub_data@data, long=coordinates(shrub_data)[,1],
                               lat=coordinates(shrub_data)[,2])                         
 head(shrub_data@data)
-
+shrub_df <- shrub_data@data
 
 ##---------------------Map of Alaska---------------------------------------#
 library(maps)
@@ -100,6 +111,6 @@ surface_pollen <- data.frame(site.id = sites.id, site.long = site.long, site.lat
 surface_pollen$prop<-(surface_pollen$shrub.total/surface_pollen$site.total)*100
 
 library(fields)
-dist.mat <- fields.rdist.near(surface_pollen[,2:3], shrub_df[,2:3], delta = 1)
+dist.mat <- rdist(surface_pollen[,2:3], shrub_df[,2:3])
 
 print("I love camp PalEON!")
